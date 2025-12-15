@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option csharp_namespace = "AuthService.Protos";
+
+package auth;
+
+service Auth {
+  rpc Register (RegisterRequest) returns (RegisterReply);
+  rpc Login (LoginRequest) returns (LoginReply);
+}
+
+message RegisterRequest {
+  string login = 1;
+  string password = 2;
+}
+
+message RegisterReply {
+  bool success = 1;
+  string message = 2;
+}
+
+message LoginRequest {
+  string login = 1;
+  string password = 2;
+}
+
+message LoginReply {
+  bool success = 1;
+  string message = 2;
+  string access_token = 3;
+  string token_type = 4;
+  int32 expires_in_minutes = 5;
+}
+
